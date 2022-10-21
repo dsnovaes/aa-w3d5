@@ -18,13 +18,11 @@ class PolyTreeNode
     # end
 
     def parent=(parent)
-        @parent = parent
         if self.parent != nil
-            old_parent = self.parent.children 
+            old_parent = self.parent.children
 
             # if the node is already child of other node
             idx = 0
-            if old_parent.empty?
                 old_parent.each_with_index do |ele,i|
                     if ele == self
                         idx = i
@@ -33,12 +31,23 @@ class PolyTreeNode
                 end
                 old_parent.delete_at(idx)
             end
-        end
+
+        @parent = parent #assigning a parent to the node
 
         if self.parent != nil && !parent.children.include?(self)
-            parent.children << self 
+            parent.children << self
         end
+    end
 
+    def add_child(child_node)
+        child_node.parent = self
+    end
+
+    def remove_child(child_node)
+        
+
+        idx = children.each_with_index {|child, i| return i if child == child_node}
+        children.delete_at(idx) if idx != nil
     end
 
 end
