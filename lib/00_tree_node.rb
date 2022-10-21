@@ -8,15 +8,6 @@ class PolyTreeNode
         @parent = nil
     end
 
-    # def inspect
-    #     if @parent == nil
-    #         the_parent = "nobody"
-    #     else
-    #         the_parent = @parent.value
-    #     end
-    #     "#{@value} is child of #{the_parent} and parent of #{@children}"
-    # end
-
     def parent=(parent)
         if self.parent != nil
             old_parent = self.parent.children
@@ -32,7 +23,7 @@ class PolyTreeNode
                 old_parent.delete_at(idx)
             end
 
-        @parent = parent #assigning a parent to the node
+        @parent = parent # assigning a parent to the node
 
         if self.parent != nil && !parent.children.include?(self)
             parent.children << self
@@ -50,6 +41,26 @@ class PolyTreeNode
             raise "not a child" 
         end
     end
+
+
+    def dfs(target_value)
+
+        stack = [self]
+        # need to populate the stack
+
+        # base case
+        return nil if stack.empty? 
+
+        # recursive steps
+
+
+    end
+
+
+
+
+
+
 end
 
 # root = PolyTreeNode.new("a")
@@ -60,3 +71,7 @@ end
 # p child
 # puts
 # p root
+
+
+root.dfs("f")
+
