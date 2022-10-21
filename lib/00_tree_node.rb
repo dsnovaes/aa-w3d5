@@ -1,3 +1,4 @@
+require "byebug"
 class PolyTreeNode
 
     attr_reader :value, :parent, :children
@@ -38,40 +39,58 @@ class PolyTreeNode
         if children.include?(child_node)
             child_node.parent = nil
         else
-            raise "not a child" 
+            raise "not a child"
         end
     end
 
 
     def dfs(target_value)
-
-        stack = [self]
-        # need to populate the stack
-
-        # base case
-        return nil if stack.empty? 
-
-        # recursive steps
-
-
+        return self if self.value == target_value
+        self.children.each do |child|
+            search_result = child.dfs(target_value) #need to make it child. so it doens't accept two arguments
+            return search_result unless search_result.nil?
+        end
+        return nil
     end
 
+    def bfs(target_value)
 
+        queue = [self]
+        return nil if queue.empty?
+        return self if self.value == target_value
+        # self.children.each do |child|
+        #     debugger
+        #     queue << child
+        #     search_result = queue.shift.bfs(target_value) #use and take out the first element
+        #     return search_result unless search_result.nil?
+        # end
 
-
-
+        until queue.empty?
+            return self if queue.first == target_value
+            self.children.each do |child|
+                queue << child
+            end
+            queue.shift
+        end
+        return nil
+    end
 
 end
 
 # root = PolyTreeNode.new("a")
-# child = PolyTreeNode.new("b")
-
-# child.parent = root
+# child_b = PolyTreeNode.new("b")
+# child_c = PolyTreeNode.new("c")
+# child_d = PolyTreeNode.new("d")
+# child_e = PolyTreeNode.new("e")
+# child_b.parent = root
+# child_c.parent = root
+# child_d.parent = child_b
+# child_e.parent = child_c
+# p root.bfs("c")
 
 # p child
 # puts
 # p root
 
 
-root.dfs("f")
-
+# root.dfs("f")
