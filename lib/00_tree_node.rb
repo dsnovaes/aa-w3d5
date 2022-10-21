@@ -4,9 +4,18 @@ class PolyTreeNode
 
     def initialize(value)
         @value = value
-        @parent = nil
         @children = []
+        @parent = nil
     end
+
+    # def inspect
+    #     if @parent == nil
+    #         the_parent = "nobody"
+    #     else
+    #         the_parent = @parent.value
+    #     end
+    #     "#{@value} is child of #{the_parent} and parent of #{@children}"
+    # end
 
     def parent=(parent)
         @parent = parent
@@ -29,6 +38,7 @@ class PolyTreeNode
         if self.parent != nil && !parent.children.include?(self)
             parent.children << self 
         end
+
     end
 
 end
@@ -37,6 +47,7 @@ end
 # child = PolyTreeNode.new("b")
 
 # child.parent = root
+
 # p child
 # puts
 # p root
