@@ -44,12 +44,12 @@ class PolyTreeNode
     end
 
     def remove_child(child_node)
-        
-
-        idx = children.each_with_index {|child, i| return i if child == child_node}
-        children.delete_at(idx) if idx != nil
+        if children.include?(child_node)
+            child_node.parent = nil
+        else
+            raise "not a child" 
+        end
     end
-
 end
 
 # root = PolyTreeNode.new("a")
