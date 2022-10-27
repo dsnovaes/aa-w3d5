@@ -44,16 +44,16 @@ class PolyTreeNode
     end
 
 
-    def dfs(target_value) #recursive
+    def dfs(target_value) # recursive
         return self if self.value == target_value
         self.children.each do |child|
-            search_result = child.dfs(target_value) #need to make it child. so it doens't accept two arguments
+            search_result = child.dfs(target_value) # need to make it child. so it doens't accept two arguments
             return search_result unless search_result.nil?
         end
         return nil
     end
 
-    def bfs(target_value) #iterative
+    def bfs(target_value) # iterative
         queue = [self]
         until queue.empty?
             el = queue.shift
